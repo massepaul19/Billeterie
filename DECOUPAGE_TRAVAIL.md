@@ -304,7 +304,7 @@ Paulo est l'intégrateur, **pas le développeur des fonctionnalités**. Pour qu'
 | Point quotidien | Chaque jour, même heure | 10 min | Hier / aujourd'hui / blocages |
 | Revue (démo) | J7 et J12, après l'intégration | 30 min | Démonstration de la version `develop` |
 | Rétrospective | J7, J12, J14 | 15 min | Ce qui marche, ce qu'on change |
-| Suivi | Permanent | - | **GitHub Projects** (tableau Kanban : À faire, En cours, En revue, Terminé) |
+| Suivi | Permanent | - | **GitHub Projects** (tableau de sprint : À faire, En cours, En revue, Terminé) |
 
 ---
 
