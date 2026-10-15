@@ -1,13 +1,9 @@
 # Trajets
 
-Propriétaire : Front C - Sprint 1
+Propriétaire : Front C (Abdias) - Sprint 1
 
-## Routes utilisées
-- `CRUD /api/agence/trajets`
+**À coder :** Liste et formulaire des trajets (gare de départ, gare d'arrivée, durée).
 
-## À faire
-- [ ] Liste + formulaire (gare de départ, gare d'arrivée, durée estimée)
-
-## Tests attendus
-- Test de widget : la page s'affiche (chargement, vide, erreur, données)
-- L'API est appelée avec les bons paramètres (mock du ApiClient)
+**Routes :**
+- `GET/POST/PUT/DELETE /api/agence/trajets`
+- `GET /api/agence/gares (pour les listes déroulantes)`

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Logique métier du module Ville (règles : docs/REGLES_GESTION.md).
- * Propriétaire : Back B - Sprint 1
+ * Propriétaire : Back B (Patricia) - Sprint 1
  */
 @Service
 public class VilleService {

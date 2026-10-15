@@ -1,16 +1,9 @@
 # Réservation
 
-Propriétaire : Front D - Sprint 2
+Propriétaire : Front D (Bouba) - Sprint 2
 
-## Routes utilisées
+**À coder :** Formulaire de contact et décompte de 5 minutes pendant lequel la place est retenue.
+
+**Routes :**
 - `POST /api/reservations`
 - `GET /api/reservations/{id}`
-
-## À faire
-- [ ] Formulaire nom, prénom, téléphone, email
-- [ ] Décompte visuel de 5 minutes
-- [ ] Gérer l'expiration
-
-## Tests attendus
-- Test de widget : la page s'affiche (chargement, vide, erreur, données)
-- L'API est appelée avec les bons paramètres (mock du ApiClient)

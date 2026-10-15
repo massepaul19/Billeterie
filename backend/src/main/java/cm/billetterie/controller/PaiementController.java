@@ -4,11 +4,10 @@ import cm.billetterie.service.PaiementService;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Contrôleur Paiement - contrat : docs/API.md
- * Propriétaire : Back B - Sprint 2
- * Routes à coder :
- * - POST
- * - GET /{id}
+ * Contrôleur Paiement - propriétaire : Back B (Patricia) - Sprint 2 - contrat : docs/API.md
+ *
+ * Routes à implémenter :
+ * - POST /api/paiements
  */
 @RestController
 @RequestMapping("/api/paiements")
@@ -20,5 +19,5 @@ public class PaiementController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto), tests dans src/test
+    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class CampayPaiementProvider implements PaiementProvider {
     @Override
     public PaiementResultat payer(Reservation reservation, String telephonePaiement, String operateur) {
-        // TODO (Back B, OPTION) : appeler l'API Campay ; en cas d'impossibilité, on garde SIMULE
+        // Campay abandonné pour cette version (pas de compte) : on garde SIMULE. Classe conservée pour une évolution.
         throw new UnsupportedOperationException("Campay pas encore branché");
     }
 }

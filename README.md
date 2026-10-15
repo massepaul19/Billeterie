@@ -13,7 +13,7 @@ Projet scolaire d'équipe - plateforme de réservation de billets de bus avec pa
 Java 17 + Spring Boot 3 (backend), Flutter (front), SQLite (un seul fichier), Gmail pour les rappels, Git/GitHub, méthode Scrum.
 
 ## Démarrage
-Backend : `cd backend && mvn spring-boot:run` (API sur http://localhost:8080).
+Backend : `cd backend && mvn spring-boot:run` (API sur http://localhost:6012).
 Frontend : `cd frontend && flutter create . --project-name billetterie_app && flutter pub get && flutter run`.
 
 ## Qui fait quoi

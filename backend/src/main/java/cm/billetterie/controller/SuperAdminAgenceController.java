@@ -4,13 +4,17 @@ import cm.billetterie.service.SuperAdminAgenceService;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Contrôleur SuperAdminAgence - contrat : docs/API.md
- * Propriétaire : Back A - Sprint 1
- * Routes à coder :
- * - GET, POST, PUT /{id}, DELETE /{id}
- * - PATCH /{id}/activation
- * - POST /{id}/compte (créer le compte admin)
- * - POST /comptes/{id}/reinitialisation-mot-de-passe
+ * Contrôleur SuperAdminAgence - propriétaire : Back A (Balla) - Sprint 1 - contrat : docs/API.md
+ *
+ * Routes à implémenter :
+ * - GET /api/admin/agences
+ * - POST /api/admin/agences
+ * - PUT /api/admin/agences/{id}
+ * - DELETE /api/admin/agences/{id}
+ * - PATCH /api/admin/agences/{id}/activation
+ * - POST /api/admin/agences/{id}/compte
+ * - POST /api/admin/agences/{id}/logo
+ * - POST /api/admin/comptes/{id}/reinitialisation-mot-de-passe
  */
 @RestController
 @RequestMapping("/api/admin/agences")
@@ -22,5 +26,5 @@ public class SuperAdminAgenceController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto), tests dans src/test
+    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
 }

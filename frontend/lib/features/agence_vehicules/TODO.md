@@ -1,13 +1,9 @@
 # Véhicules
 
-Propriétaire : Front C - Sprint 1
+Propriétaire : Front D (Bouba) - Sprint 1
 
-## Routes utilisées
-- `CRUD /api/agence/vehicules`
+**À coder :** Liste et formulaire des véhicules, avec envoi de la photo.
 
-## À faire
-- [ ] Liste + formulaire (immatriculation, SIMPLE/VIP, places, clim, wifi, image)
-
-## Tests attendus
-- Test de widget : la page s'affiche (chargement, vide, erreur, données)
-- L'API est appelée avec les bons paramètres (mock du ApiClient)
+**Routes :**
+- `GET/POST/PUT/DELETE /api/agence/vehicules`
+- `POST /api/agence/vehicules/{id}/image (multipart, champ fichier)`

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Logique métier du module AgenceVehicule (règles : docs/REGLES_GESTION.md).
- * Propriétaire : Back A - Sprint 1
+ * Propriétaire : Back A (Balla) - Sprint 1
  */
 @Service
 public class AgenceVehiculeService {

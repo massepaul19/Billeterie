@@ -4,11 +4,11 @@ import cm.billetterie.service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Contrôleur Reservation - contrat : docs/API.md
- * Propriétaire : Back B - Sprint 2
- * Routes à coder :
- * - POST (bloque 5 min)
- * - GET /{id}
+ * Contrôleur Reservation - propriétaire : Back B (Patricia) - Sprint 2 - contrat : docs/API.md
+ *
+ * Routes à implémenter :
+ * - POST /api/reservations
+ * - GET /api/reservations/{id}
  */
 @RestController
 @RequestMapping("/api/reservations")
@@ -20,5 +20,5 @@ public class ReservationController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto), tests dans src/test
+    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
 }

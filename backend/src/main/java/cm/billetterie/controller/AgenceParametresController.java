@@ -4,10 +4,11 @@ import cm.billetterie.service.AgenceParametresService;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Contrôleur AgenceParametres - contrat : docs/API.md
- * Propriétaire : Back A - Sprint 2
- * Routes à coder :
- * - GET, PUT /rappels
+ * Contrôleur AgenceParametres - propriétaire : Back A (Balla) - Sprint 2 - contrat : docs/API.md
+ *
+ * Routes à implémenter :
+ * - GET /api/agence/parametres/rappels
+ * - PUT /api/agence/parametres/rappels
  */
 @RestController
 @RequestMapping("/api/agence/parametres")
@@ -19,5 +20,5 @@ public class AgenceParametresController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto), tests dans src/test
+    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
 }

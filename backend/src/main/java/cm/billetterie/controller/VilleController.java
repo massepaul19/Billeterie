@@ -4,10 +4,10 @@ import cm.billetterie.service.VilleService;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Contrôleur Ville - contrat : docs/API.md
- * Propriétaire : Back B - Sprint 1
- * Routes à coder :
- * - GET ?q= (suggestions)
+ * Contrôleur Ville - propriétaire : Back B (Patricia) - Sprint 1 - contrat : docs/API.md
+ *
+ * Routes à implémenter :
+ * - GET /api/villes?q=
  */
 @RestController
 @RequestMapping("/api/villes")
@@ -19,5 +19,5 @@ public class VilleController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto), tests dans src/test
+    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
 }

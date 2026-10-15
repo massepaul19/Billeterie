@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Logique métier du module Billet (règles : docs/REGLES_GESTION.md).
- * Propriétaire : Back B - Sprint 2
+ * Propriétaire : Back B (Patricia) - Sprint 2
  */
 @Service
 public class BilletService {

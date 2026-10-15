@@ -19,3 +19,4 @@ frontend/pubspec.lock
 .env*
 # Sauvegardes du script d'initialisation
 *.bak-*
+backend/uploads/

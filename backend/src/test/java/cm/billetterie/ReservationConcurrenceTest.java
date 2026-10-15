@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class ReservationConcurrenceTest {
 
-    @Disabled("TODO (Back B, Sprint 2) : à activer quand la réservation existe")
+    @Disabled("TODO (Back B, Sprint 1) : tester VoyageRepository.reserverUnePlace (5 places, 50 threads) puis activer")
     @Test
     void aucunePlaceVendueDeuxFois() {
         // Voyage de 5 places, 50 threads qui réservent en même temps :

@@ -4,11 +4,11 @@ import cm.billetterie.service.AgenceVerificationService;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Contrôleur AgenceVerification - contrat : docs/API.md
- * Propriétaire : Back B - Sprint 2
- * Routes à coder :
- * - POST /verification {code}
- * - GET /recherche?q= (nom ou téléphone)
+ * Contrôleur AgenceVerification - propriétaire : Back B (Patricia) - Sprint 2 - contrat : docs/API.md
+ *
+ * Routes à implémenter :
+ * - POST /api/agence/billets/verification
+ * - GET /api/agence/billets/recherche?q=
  */
 @RestController
 @RequestMapping("/api/agence/billets")
@@ -20,5 +20,5 @@ public class AgenceVerificationController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto), tests dans src/test
+    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
 }

@@ -5,3 +5,5 @@ INSERT OR IGNORE INTO ville (nom) VALUES
 INSERT OR IGNORE INTO synonyme_recherche (mot, critere) VALUES
  ('clim','CLIM'),('climatise','CLIM'),('climatisé','CLIM'),('climatisation','CLIM'),
  ('wifi','WIFI'),('wi-fi','WIFI'),('vip','VIP'),('luxe','VIP');
+
+INSERT OR IGNORE INTO parametre (cle, valeur) VALUES ('commission_taux', '0.007');

@@ -1,4 +1,4 @@
-# Contrat d'API - v0.1 (Paulo, Sprint 0)
+# Contrat d'API - v0.2 (Paulo)
 
 **Ce document est la référence entre back et front. Toute modification passe par Paulo.**
 
@@ -19,6 +19,13 @@ HTTP 400 `VALIDATION` - 401 `NON_AUTHENTIFIE` - 403 `INTERDIT` - 404 `INTROUVABL
 ## Pagination
 `?page=0&taille=20` -> `{ "contenu": [...], "page": 0, "taille": 20, "total": 134, "derniere": false }`
 
+## Fichiers (images)
+- Les colonnes `agence.logo` et `vehicule.image` contiennent le chemin relatif du fichier sur le serveur.
+- **Les réponses JSON renvoient l'URL complète** dans `logo` et `image` (ex. `http://localhost:6012/files/agences/3f2a9c.png`), ou `null` s'il n'y a pas d'image. Le front n'a qu'à afficher cette URL.
+- Lecture publique, sans jeton : `GET /files/**`.
+- Envoi : `multipart/form-data`, champ `fichier`. Formats jpg, png, webp ; 2 Mo maximum ; sinon 400 `VALIDATION`.
+- Une image envoyée doit s'afficher dans l'interface (RG20).
+
 ---
 ## Public
 
@@ -31,7 +38,8 @@ Seulement les agences actives.
 
 ### GET /api/voyages
 Paramètres (tous optionnels) : `depart`, `destination` (noms de villes), `dateDebut`, `dateFin`, `heure` (HH:mm),
-`type` (SIMPLE|VIP), `clim`, `wifi`, `q` (texte libre + synonymes), `page`, `taille`.
+`type` (SIMPLE|VIP), `clim`, `wifi`, `q` (texte libre + synonymes),
+`latitude` et `longitude` (OPTION carte, pour départager par distance), `page`, `taille`.
 Réponse paginée de :
 ```json
 {
@@ -46,7 +54,9 @@ Réponse paginée de :
 }
 ```
 Jamais de voyage passé, annulé ou sans place. **Pas de `placesRestantes`.**
-Tri : proximité de l'heure demandée ; si rien ne correspond, les départs les plus proches.
+Tri : proximité de l'heure demandée ; si rien ne correspond, les départs les plus proches ; puis la distance
+si la position du voyageur est envoyée (jamais enregistrée, RG18).
+`logo` et `image` sont des URL complètes (ou `null`).
 
 ### GET /api/voyages/{id}  -> même objet que ci-dessus
 
@@ -80,6 +90,7 @@ Erreur : 409 `RESERVATION_EXPIREE`.
 ## Authentification
 ### POST /api/auth/connexion
 `{ "telephone": "699000000", "motDePasse": "..." }` -> `{ "token": "...", "role": "ADMIN_AGENCE", "agenceId": 3 }`
+403 `INTERDIT` si l'agence du compte est désactivée (RG16).
 ### POST /api/auth/mot-de-passe   (connecté)  `{ "ancien": "...", "nouveau": "..." }` -> 204
 
 ---
@@ -87,19 +98,24 @@ Erreur : 409 `RESERVATION_EXPIREE`.
 | Méthode | Route | Corps / remarque |
 |---|---|---|
 | GET | /agences | liste (actives et inactives) |
-| POST | /agences | `{ nom, logo, slogan, villeId, latitude, longitude, numeroMobileMoney }` |
+| POST | /agences | `{ nom, slogan, villeId, latitude, longitude, numeroMobileMoney }` (le logo s'envoie à part) |
 | PUT | /agences/{id} | idem |
 | DELETE | /agences/{id} | |
 | PATCH | /agences/{id}/activation | `{ "actif": false }` |
 | POST | /agences/{id}/compte | `{ telephone, email, motDePasseInitial }` -> crée l'admin de l'agence |
+| POST | /agences/{id}/logo | `multipart/form-data`, champ `fichier` -> `{ "logo": "url" }` |
 | POST | /comptes/{id}/reinitialisation-mot-de-passe | `{ "nouveauMotDePasse": "..." }` |
 | GET | /commissions?mois=2026-11 | `[ { agenceId, agenceNom, totalVentes, commission, statutFacturation } ]` |
+| GET | /parametres/commission | `{ "taux": 0.007 }` |
+| PUT | /parametres/commission | `{ "taux": 0.01 }` -> nouveau taux, appliqué aux réservations payées ensuite (RG12) |
 
 ## Administrateur d'agence (`/api/agence`)
 | Méthode | Route | Corps / remarque |
 |---|---|---|
 | GET/POST/PUT/DELETE | /gares | `{ villeId, nom, quartier, adresse, latitude, longitude }` |
-| GET/POST/PUT/DELETE | /vehicules | `{ immatriculation, type, nbPlaces, clim, wifi, image }` |
+| GET/POST/PUT/DELETE | /vehicules | `{ immatriculation, type, nbPlaces, clim, wifi }` (la photo s'envoie à part) |
+| POST | /vehicules/{id}/image | `multipart/form-data`, champ `fichier` -> `{ "image": "url" }` |
+| POST | /logo | `multipart/form-data`, champ `fichier` -> `{ "logo": "url" }` (logo de sa propre agence) |
 | GET/POST/PUT/DELETE | /trajets | `{ gareDepartId, gareArriveeId, dureeEstimeeMin }` |
 | GET/POST/PUT | /voyages | `{ trajetId, vehiculeId, dateHeureDepart, prix }` (places = nbPlaces du véhicule) |
 | PATCH | /voyages/{id}/prix | `{ "prix": 6000 }` |

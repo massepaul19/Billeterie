@@ -5,7 +5,7 @@ Pour : Back A et Back B. Lire aussi `docs/SCRUM.md`, `docs/API.md` et `docs/REGL
 ## Lancer
 ```
 cd backend
-mvn spring-boot:run        # API sur http://localhost:8080
+mvn spring-boot:run        # API sur http://localhost:6012
 mvn test                   # tests
 ```
 La base est créée au démarrage dans `backend/data/billetterie.db` (schéma : `database/schema.sql`).

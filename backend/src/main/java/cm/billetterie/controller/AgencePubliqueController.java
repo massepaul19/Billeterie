@@ -4,11 +4,10 @@ import cm.billetterie.service.AgencePubliqueService;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Contrôleur AgencePublique - contrat : docs/API.md
- * Propriétaire : Back B - Sprint 1
- * Routes à coder :
- * - GET (liste pour la carte)
- * - GET /{id}
+ * Contrôleur AgencePublique - propriétaire : Back B (Patricia) - Sprint 1 - contrat : docs/API.md
+ *
+ * Routes à implémenter :
+ * - GET /api/agences
  */
 @RestController
 @RequestMapping("/api/agences")
@@ -20,5 +19,5 @@ public class AgencePubliqueController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto), tests dans src/test
+    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
 }

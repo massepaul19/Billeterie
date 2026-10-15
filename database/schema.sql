@@ -162,6 +162,13 @@ CREATE TABLE IF NOT EXISTS synonyme_recherche (
   critere TEXT NOT NULL                 -- CLIM, WIFI, VIP
 );
 
+-- Paramètres modifiables (ex. taux de commission, clé commission_taux, 0.007 par défaut)
+CREATE TABLE IF NOT EXISTS parametre (
+  cle TEXT PRIMARY KEY,
+  valeur TEXT NOT NULL,
+  modifie_le TEXT
+);
+
 CREATE INDEX IF NOT EXISTS idx_voyage_recherche ON voyage (trajet_id, date_heure_depart, statut);
 CREATE INDEX IF NOT EXISTS idx_voyage_agence ON voyage (agence_id, date_heure_depart);
 CREATE INDEX IF NOT EXISTS idx_gare_ville ON gare (ville_id, latitude, longitude);

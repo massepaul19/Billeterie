@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'core/theme/app_theme.dart';
+import 'features/agence_parametres/presentation/agence_parametres_page.dart';
+import 'features/agence_remboursements/presentation/agence_remboursements_page.dart';
 import 'features/auth/presentation/auth_page.dart';
 import 'features/super_admin_agences/presentation/super_admin_agences_page.dart';
 import 'features/agence_gares/presentation/agence_gares_page.dart';
@@ -38,10 +40,12 @@ class AccueilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final entrees = <String, Widget>{
+      'Paramètres de rappel (Front C)': const AgenceParametresPage(),
+      'Remboursements (Front C)': const AgenceRemboursementsPage(),
       'Connexion (Front C)': const AuthPage(),
       'Agences (super admin) (Front C)': const SuperAdminAgencesPage(),
-      'Gares (Front C)': const AgenceGaresPage(),
-      'Véhicules (Front C)': const AgenceVehiculesPage(),
+      'Gares (Front D)': const AgenceGaresPage(),
+      'Véhicules (Front D)': const AgenceVehiculesPage(),
       'Trajets (Front C)': const AgenceTrajetsPage(),
       'Voyages (Front C)': const AgenceVoyagesPage(),
       'Réservations (agence) (Front C)': const AgenceReservationsPage(),

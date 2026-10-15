@@ -29,4 +29,5 @@ prélèvement automatique de la commission.
 - **Obligatoire** : agences, voyages, recherche, réservation 5 min, paiement simulé, billet PDF+QR,
   vérification, annulation, email de rappel, commissions.
 - **Option si le temps le permet** : carte et proximité, modèles de voyage récurrents,
-  réutilisation d'un billet, Campay.
+  réutilisation d'un billet.
+  Campay est abandonné (pas de compte) : le paiement reste simulé.

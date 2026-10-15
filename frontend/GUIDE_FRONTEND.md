@@ -7,9 +7,9 @@ Pour : Front C (administration) et Front D (public). Lire aussi `docs/SCRUM.md` 
 cd frontend
 flutter create . --project-name billetterie_app   # une seule fois (génère android/, web/, ...)
 flutter pub get
-flutter run --dart-define=API_URL=http://localhost:8080
+flutter run --dart-define=API_URL=http://localhost:6012
 ```
-Émulateur Android : `API_URL=http://10.0.2.2:8080`.
+Émulateur Android : `API_URL=http://10.0.2.2:6012`.
 
 ## Architecture (`lib/`)
 | Dossier | Rôle |

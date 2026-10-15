@@ -4,12 +4,14 @@ import cm.billetterie.service.AgenceVoyageService;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Contrôleur AgenceVoyage - contrat : docs/API.md
- * Propriétaire : Back A - Sprint 1
- * Routes à coder :
- * - GET, POST, PUT /{id}
- * - PATCH /{id}/prix
- * - POST /{id}/annulation (rembourse à 100 %)
+ * Contrôleur AgenceVoyage - propriétaire : Back B (Patricia) - Sprint 1 - contrat : docs/API.md
+ *
+ * Routes à implémenter :
+ * - GET /api/agence/voyages
+ * - POST /api/agence/voyages
+ * - PUT /api/agence/voyages/{id}
+ * - PATCH /api/agence/voyages/{id}/prix
+ * - POST /api/agence/voyages/{id}/annulation
  */
 @RestController
 @RequestMapping("/api/agence/voyages")
@@ -21,5 +23,5 @@ public class AgenceVoyageController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto), tests dans src/test
+    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
 }

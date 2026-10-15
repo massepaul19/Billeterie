@@ -1,13 +1,10 @@
 # Commissions (super admin)
 
-Propriétaire : Front C - Sprint 2
+Propriétaire : Front C (Abdias) - Sprint 2
 
-## Routes utilisées
-- `GET /api/admin/commissions?mois=`
+**À coder :** Relevé mensuel des commissions par agence et modification du taux.
 
-## À faire
-- [ ] Relevé mensuel par agence : total des ventes et commission due
-
-## Tests attendus
-- Test de widget : la page s'affiche (chargement, vide, erreur, données)
-- L'API est appelée avec les bons paramètres (mock du ApiClient)
+**Routes :**
+- `GET /api/admin/commissions?mois=YYYY-MM`
+- `GET /api/admin/parametres/commission`
+- `PUT /api/admin/parametres/commission`

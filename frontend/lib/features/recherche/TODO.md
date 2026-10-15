@@ -1,19 +1,10 @@
 # Recherche de voyages
 
-Propriétaire : Front D - Sprint 1
+Propriétaire : Front D (Bouba) - Sprint 1
 
-## Routes utilisées
-- `GET /api/villes`
+**À coder :** Liste de voyages dès l'ouverture, filtrée en direct (villes, date, heure, type, clim, wifi, texte libre). À livrer pour J5.
+
+**Routes :**
+- `GET /api/villes?q=`
 - `GET /api/voyages`
 - `GET /api/voyages/{id}`
-
-## À faire
-- [ ] Liste de voyages dès l'ouverture
-- [ ] Filtres en direct (délai ~300 ms)
-- [ ] Suggestions de villes
-- [ ] Pagination / chargement progressif (20 par page)
-- [ ] Ne jamais afficher le nombre de places
-
-## Tests attendus
-- Test de widget : la page s'affiche (chargement, vide, erreur, données)
-- L'API est appelée avec les bons paramètres (mock du ApiClient)

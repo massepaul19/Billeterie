@@ -1,33 +1,44 @@
 # TODO Backend
 
-Cocher au fur et à mesure. Propriétaire et sprint indiqués.
+Cocher au fur et à mesure. Le contrat est `docs/API.md` ; base de démonstration : `python3 database/gen_demo_data.py`.
 
-## Sprint 1
-- [ ] **Auth** (Back A) `/api/auth` : POST /connexion ; POST /mot-de-passe (changer)
-- [ ] **Ville** (Back B) `/api/villes` : GET ?q= (suggestions)
-- [ ] **AgencePublique** (Back B) `/api/agences` : GET (liste pour la carte) ; GET /{id}
-- [ ] **VoyagePublic** (Back B) `/api/voyages` : GET (recherche dynamique, paginée) ; GET /{id}
-- [ ] **SuperAdminAgence** (Back A) `/api/admin/agences` : GET, POST, PUT /{id}, DELETE /{id} ; PATCH /{id}/activation ; POST /{id}/compte (créer le compte admin) ; POST /comptes/{id}/reinitialisation-mot-de-passe
-- [ ] **AgenceGare** (Back A) `/api/agence/gares` : CRUD complet (filtré par agenceId du jeton)
-- [ ] **AgenceVehicule** (Back A) `/api/agence/vehicules` : CRUD complet
-- [ ] **AgenceTrajet** (Back A) `/api/agence/trajets` : CRUD complet
-- [ ] **AgenceVoyage** (Back A) `/api/agence/voyages` : GET, POST, PUT /{id} ; PATCH /{id}/prix ; POST /{id}/annulation (rembourse à 100 %)
-- [ ] **AgenceModele** (Back A) `/api/agence/modeles` : CRUD + génération des voyages récurrents (OPTION)
-- [ ] **JWT / sécurité** (Back A) : voir `security/TODO_JWT.md`
-- [ ] **DemoDataLoader** (Back A) : agences et voyages de démonstration
-- [ ] **GlobalExceptionHandler** (Back A) : validation, 403, 500
+## Ordre de livraison
+- Connexion : J4 (Balla)
+- Recherche de voyages et envoi de fichiers : J5 (Patricia et Balla)
 
-## Sprint 2
-- [ ] **Reservation** (Back B) `/api/reservations` : POST (bloque 5 min) ; GET /{id}
-- [ ] **Paiement** (Back B) `/api/paiements` : POST ; GET /{id}
-- [ ] **Billet** (Back B) `/api/billets` : GET /{code} ; GET /{code}/pdf ; POST /{code}/annulation ; POST /{code}/reutilisation (OPTION)
-- [ ] **AgenceReservation** (Back B) `/api/agence/reservations` : GET (liste filtrée)
-- [ ] **AgenceVerification** (Back B) `/api/agence/billets` : POST /verification {code} ; GET /recherche?q= (nom ou téléphone)
-- [ ] **AgenceParametres** (Back A) `/api/agence/parametres` : GET, PUT /rappels
-- [ ] **AgenceRemboursement** (Back A) `/api/agence/remboursements` : GET ; PATCH /{id} (statut)
-- [ ] **SuperAdminCommission** (Back A) `/api/admin/commissions` : GET ?mois=YYYY-MM
-- [ ] **Expiration des réservations** (Back B) : `ExpirationReservationScheduler`
-- [ ] **Rappels email Gmail** (Back A) : `RappelScheduler` + `EmailService`
-- [ ] **Billet PDF + QR** (Back B) : `BilletPdfService`
-- [ ] **Commission 0,7 %** (Back A) : calculée à chaque paiement réussi + relevé mensuel
-- [ ] **Test de concurrence** (Back B) : `ReservationConcurrenceTest`
+## Back A (Balla)
+### Sprint 1
+- [ ] **Auth** : POST /api/auth/connexion ; POST /api/auth/mot-de-passe
+- [ ] **SuperAdminAgence** : GET /api/admin/agences ; POST /api/admin/agences ; PUT /api/admin/agences/{id} ; DELETE /api/admin/agences/{id} ; PATCH /api/admin/agences/{id}/activation ; POST /api/admin/agences/{id}/compte ; POST /api/admin/agences/{id}/logo ; POST /api/admin/comptes/{id}/reinitialisation-mot-de-passe
+- [ ] **AgenceGare** : GET /api/agence/gares ; POST /api/agence/gares ; PUT /api/agence/gares/{id} ; DELETE /api/agence/gares/{id}
+- [ ] **AgenceVehicule** : GET /api/agence/vehicules ; POST /api/agence/vehicules ; PUT /api/agence/vehicules/{id} ; DELETE /api/agence/vehicules/{id} ; POST /api/agence/vehicules/{id}/image
+- [ ] **AgenceLogo** : POST /api/agence/logo
+- [ ] **Fichiers** : `FichierStorageService` + `FichiersConfig` (GET /files/** public, images jpg/png/webp 2 Mo max, URL complète dans logo et image)
+- [ ] **Sécurité JWT** : voir `security/TODO_JWT.md`
+- [ ] **DemoDataLoader** et **GlobalExceptionHandler**
+
+### Sprint 2
+- [ ] **AgenceParametres** : GET /api/agence/parametres/rappels ; PUT /api/agence/parametres/rappels
+- [ ] **AgenceRemboursement** : GET /api/agence/remboursements ; PATCH /api/agence/remboursements/{id}
+- [ ] **SuperAdminCommission** : GET /api/admin/commissions?mois=YYYY-MM
+- [ ] **SuperAdminParametre** : GET /api/admin/parametres/commission ; PUT /api/admin/parametres/commission
+- [ ] **Rappels par email (Gmail)** : `RappelScheduler` + `EmailService`
+- [ ] **Billet PDF + QR** : `BilletPdfService`
+
+## Back B (Patricia)
+### Sprint 1
+- [ ] **Ville** : GET /api/villes?q=
+- [ ] **AgencePublique** : GET /api/agences
+- [ ] **VoyagePublic** : GET /api/voyages?depart=&destination=&dateDebut=&dateFin=&heure=&type=&clim=&wifi=&q=&page=&taille= ; GET /api/voyages/{id}
+- [ ] **AgenceTrajet** : GET /api/agence/trajets ; POST /api/agence/trajets ; PUT /api/agence/trajets/{id} ; DELETE /api/agence/trajets/{id}
+- [ ] **AgenceVoyage** : GET /api/agence/voyages ; POST /api/agence/voyages ; PUT /api/agence/voyages/{id} ; PATCH /api/agence/voyages/{id}/prix ; POST /api/agence/voyages/{id}/annulation
+- [ ] **AgenceModele** (OPTION) : GET /api/agence/modeles ; POST /api/agence/modeles ; PUT /api/agence/modeles/{id} ; DELETE /api/agence/modeles/{id}
+- [ ] **Test de concurrence** : `ReservationConcurrenceTest` (50 threads, 5 places)
+
+### Sprint 2
+- [ ] **Reservation** : POST /api/reservations ; GET /api/reservations/{id}
+- [ ] **Paiement** : POST /api/paiements
+- [ ] **Billet** : GET /api/billets/{code} ; GET /api/billets/{code}/pdf ; POST /api/billets/{code}/annulation ; POST /api/billets/{code}/reutilisation
+- [ ] **AgenceReservation** : GET /api/agence/reservations?statut=&voyageId=
+- [ ] **AgenceVerification** : POST /api/agence/billets/verification ; GET /api/agence/billets/recherche?q=
+- [ ] **Expiration des réservations** : `ExpirationReservationScheduler`

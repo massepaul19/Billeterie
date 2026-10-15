@@ -11,15 +11,21 @@
 - **RG9** Annulation par le client jusqu'à 2 h avant le départ : remboursement moins 5 %.
 - **RG10** Annulation du voyage par l'agence : remboursement à 100 %.
 - **RG11** Les remboursements sont faits par l'agence hors système ; la plateforme enregistre seulement la demande et son statut.
-- **RG12** Commission de 0,7 % calculée et enregistrée sur chaque réservation payée (entier FCFA, arrondi à l'entier le plus proche : à valider), facturée chaque mois.
+- **RG12** Commission calculée et enregistrée sur chaque réservation payée, facturée chaque mois. Le taux est de **0,7 % par défaut** et **modifiable par le super administrateur** depuis l'interface ; le nouveau taux ne s'applique qu'aux réservations payées ensuite. Montant en entier FCFA, arrondi à l'entier le plus proche.
 - **RG13** À l'embarquement : scan du QR ou recherche nom/téléphone ; le billet passe à UTILISE à la première validation.
 - **RG14** Un administrateur d'agence ne voit et ne modifie que les données de son agence (agenceId pris dans le jeton).
 - **RG15** Connexion par téléphone + mot de passe. Deux rôles : SUPER_ADMIN et ADMIN_AGENCE.
-- **RG16** Une agence désactivée n'apparaît plus dans les résultats publics ; réactivable sans perte de données.
+- **RG16** Une agence désactivée n'apparaît plus dans les résultats publics et son administrateur ne peut plus se connecter ; réactivable sans perte de données.
 - **RG17** Les voyages partent toujours d'une gare de l'agence.
 - **RG18** La position du voyageur n'est jamais enregistrée.
-- **RG19** (anti-abus) Maximum de réservations EN_ATTENTE par téléphone et par IP : 3 (à valider).
+- **RG19** (anti-abus) Maximum de réservations EN_ATTENTE par téléphone et par IP : 3 (validé).
+- **RG20** Le logo d'une agence et la photo d'un véhicule sont stockés sur le serveur ; ils doivent s'afficher dans l'interface (recherche, listes, carte, billet).
+- **RG21** Tri par défaut des résultats : heure d'abord ; la distance ne départage que si la position du voyageur est envoyée (option carte).
 
-## Points à valider en équipe
-Limite de réservations en attente, tri par défaut (heure puis distance), blocage de la connexion d'une agence
-désactivée, arrondi de la commission, compte Campay, répartition des modules.
+## Décisions validées (15 octobre 2026)
+- Maximum de 3 réservations en attente par téléphone et par IP.
+- Tri par défaut : heure d'abord, puis distance.
+- Une agence désactivée ne peut plus se connecter.
+- Commission : 0,7 % par défaut, modifiable par le super administrateur ; arrondi à l'entier le plus proche.
+- Campay : pas de compte, abandonné. Le paiement reste simulé.
+- Répartition des modules : voir `docs/DECOUPAGE_TRAVAIL.md`.
