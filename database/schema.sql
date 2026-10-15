@@ -1,5 +1,5 @@
 -- Schéma SQLite - Billetterie multi-agences (v0.1)
--- Dates : texte ISO-8601 heure locale Africa/Douala. Montants : entiers en FCFA.
+-- Dates : texte 'yyyy-MM-dd HH:mm:ss.SSS' heure locale Africa/Douala (date_class=TEXT). Montants : entiers en FCFA.
 -- Booléens : 0/1. Les contraintes CHECK reprennent les enums Java.
 
 CREATE TABLE IF NOT EXISTS ville (
