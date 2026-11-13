@@ -1,11 +1,10 @@
 package cm.billetterie.repository;
 
-import cm.billetterie.entity.*;
-import java.util.Optional;
-import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
+import cm.billetterie.entity.Remboursement;
+import java.util.Collection;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RemboursementRepository extends JpaRepository<Remboursement, Long> {
-    // TODO : requêtes spécifiques à Remboursement
+    List<Remboursement> findByReservationIdInOrderByCreeLeDesc(Collection<Long> reservationIds);
 }

@@ -1,14 +1,11 @@
 package cm.billetterie.controller;
 
+import cm.billetterie.dto.PaiementReponse;
+import cm.billetterie.dto.PaiementRequete;
 import cm.billetterie.service.PaiementService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Contrôleur Paiement - propriétaire : Back B (Patricia) - Sprint 2 - contrat : docs/API.md
- *
- * Routes à implémenter :
- * - POST /api/paiements
- */
 @RestController
 @RequestMapping("/api/paiements")
 public class PaiementController {
@@ -19,5 +16,8 @@ public class PaiementController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
+    @PostMapping
+    public PaiementReponse payer(@Valid @RequestBody PaiementRequete requete) {
+        return service.payer(requete);
+    }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'core/theme/app_theme.dart';
 import 'features/agence_parametres/presentation/agence_parametres_page.dart';
 import 'features/agence_remboursements/presentation/agence_remboursements_page.dart';
@@ -13,11 +14,13 @@ import 'features/agence_verification/presentation/agence_verification_page.dart'
 import 'features/commissions/presentation/commissions_page.dart';
 import 'features/recherche/presentation/recherche_page.dart';
 import 'features/carte/presentation/carte_page.dart';
-import 'features/reservation/presentation/reservation_page.dart';
-import 'features/paiement/presentation/paiement_page.dart';
 import 'features/billet/presentation/billet_page.dart';
 
-void main() => runApp(const BilletterieApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('fr');
+  runApp(const BilletterieApp());
+}
 
 class BilletterieApp extends StatelessWidget {
   const BilletterieApp({super.key});
@@ -53,8 +56,6 @@ class AccueilPage extends StatelessWidget {
       'Commissions (super admin) (Front C)': const CommissionsPage(),
       'Recherche de voyages (Front D)': const RecherchePage(),
       'Carte des agences (Front D)': const CartePage(),
-      'Réservation (Front D)': const ReservationPage(),
-      'Paiement (Front D)': const PaiementPage(),
       'Billet (Front D)': const BilletPage(),
     };
     return Scaffold(

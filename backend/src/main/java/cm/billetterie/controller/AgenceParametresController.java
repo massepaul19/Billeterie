@@ -1,15 +1,11 @@
 package cm.billetterie.controller;
 
+import cm.billetterie.dto.RappelsDto;
+import cm.billetterie.security.AuthPrincipal;
 import cm.billetterie.service.AgenceParametresService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Contrôleur AgenceParametres - propriétaire : Back A (Balla) - Sprint 2 - contrat : docs/API.md
- *
- * Routes à implémenter :
- * - GET /api/agence/parametres/rappels
- * - PUT /api/agence/parametres/rappels
- */
 @RestController
 @RequestMapping("/api/agence/parametres")
 public class AgenceParametresController {
@@ -20,5 +16,14 @@ public class AgenceParametresController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
+    @GetMapping("/rappels")
+    public RappelsDto lire(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth) {
+        return service.lireRappels(auth.agenceId());
+    }
+
+    @PutMapping("/rappels")
+    public RappelsDto modifier(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth,
+                               @Valid @RequestBody RappelsDto r) {
+        return service.modifierRappels(auth.agenceId(), r);
+    }
 }

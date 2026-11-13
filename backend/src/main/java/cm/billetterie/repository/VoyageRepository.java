@@ -1,6 +1,8 @@
 package cm.billetterie.repository;
 
 import cm.billetterie.entity.*;
+import cm.billetterie.entity.enums.StatutVoyage;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
@@ -20,5 +22,6 @@ public interface VoyageRepository extends JpaRepository<Voyage, Long> {
     @Query("UPDATE Voyage v SET v.placesRestantes = v.placesRestantes + 1 WHERE v.id = :id")
     int libererUnePlace(@Param("id") Long id);
 
-    // TODO (Back B) : requête de recherche publique (voir docs/API.md GET /api/voyages)
+    /** Base de la recherche publique : le reste du filtrage et le tri se font en Java. */
+    List<Voyage> findByStatutAndPlacesRestantesGreaterThan(StatutVoyage statut, Integer places);
 }

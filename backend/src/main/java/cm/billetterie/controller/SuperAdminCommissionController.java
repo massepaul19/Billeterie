@@ -1,14 +1,12 @@
 package cm.billetterie.controller;
 
+import cm.billetterie.dto.CommissionReponse;
 import cm.billetterie.service.SuperAdminCommissionService;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Contrôleur SuperAdminCommission - propriétaire : Back A (Balla) - Sprint 2 - contrat : docs/API.md
- *
- * Routes à implémenter :
- * - GET /api/admin/commissions?mois=YYYY-MM
- */
 @RestController
 @RequestMapping("/api/admin/commissions")
 public class SuperAdminCommissionController {
@@ -19,5 +17,11 @@ public class SuperAdminCommissionController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
+    @GetMapping
+    public List<CommissionReponse> lister(@RequestParam(name = "mois", required = false) String mois) {
+        String m = (mois == null || mois.isBlank())
+                ? LocalDate.now(ZoneId.of("Africa/Douala")).toString().substring(0, 7)
+                : mois;
+        return service.lister(m);
+    }
 }

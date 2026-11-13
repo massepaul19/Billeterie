@@ -1,11 +1,12 @@
 package cm.billetterie.repository;
 
-import cm.billetterie.entity.*;
+import cm.billetterie.entity.Gare;
+import java.util.List;
 import java.util.Optional;
-import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GareRepository extends JpaRepository<Gare, Long> {
-    // TODO : requêtes spécifiques à Gare
+    List<Gare> findByAgenceIdOrderByNom(Long agenceId);
+
+    Optional<Gare> findByIdAndAgenceId(Long id, Long agenceId);
 }

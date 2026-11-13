@@ -1,10 +1,12 @@
 import '../../../core/network/api_client.dart';
 
-/// Appels HTTP du module Réservations (agence) (contrat : docs/API.md).
 class AgenceReservationsApi {
   final ApiClient client;
   AgenceReservationsApi(this.client);
 
-  // TODO : une méthode par route
-  // GET /api/agence/reservations
+  /// Page { contenu, page, taille, total, derniere }.
+  Future<Map<String, dynamic>> lister({String? statut, int page = 0}) async =>
+      Map<String, dynamic>.from((await client.dio.get('/api/agence/reservations',
+              queryParameters: {if (statut != null) 'statut': statut, 'page': page, 'taille': 20}))
+          .data);
 }

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Billetterie : voyages en bus au Cameroun</title>
+<meta name="description" content="Recherchez et réservez votre billet de bus auprès des agences de voyage du Cameroun.">
+<link rel="stylesheet" href="/css/style.css">
+</head><body>
+<main>
+  <h1>Trouvez votre voyage</h1>
+  <form class="panneau" id="filtres" onsubmit="return false">
+    <div class="filtres">
+      <div><label for="depart">Départ</label><input type="text" id="depart" list="villes" placeholder="Ville de départ" autocomplete="off"></div>
+      <div><label for="destination">Destination</label><input type="text" id="destination" list="villes" placeholder="Ville d'arrivée" autocomplete="off"></div>
+      <div><label for="date">Date</label><input type="date" id="date"></div>
+      <div><label for="type">Type</label><select id="type"><option value="">Tous</option><option value="SIMPLE">Simple</option><option value="VIP">VIP</option></select></div>
+      <div><label for="q">Recherche libre</label><input type="search" id="q" placeholder="Agence, quartier, clim…"></div>
+    </div>
+    <datalist id="villes"></datalist>
+    <div class="coches" style="margin-top:12px">
+      <label><input type="checkbox" id="clim"> Climatisé</label>
+      <label><input type="checkbox" id="wifi"> Wifi</label>
+      <button type="button" class="btn clair" id="pos">📍 Près de moi</button>
+      <span id="posEtat" style="color:var(--gris);font-size:.85rem"></span>
+    </div>
+  </form>
+
+  <div id="resume" style="margin:14px 0 6px;color:var(--gris)"></div>
+  <div id="resultats" class="grille"></div>
+
+  <h2 id="agences">Nos agences</h2>
+  <div id="listeAgences" class="grille"></div>
+</main>
+<script src="/js/api.js"></script>
+<script src="/js/index.js"></script>
+</body></html>

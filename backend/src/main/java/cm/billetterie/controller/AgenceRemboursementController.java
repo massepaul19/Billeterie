@@ -1,15 +1,13 @@
 package cm.billetterie.controller;
 
+import cm.billetterie.dto.RemboursementAgenceReponse;
+import cm.billetterie.dto.RemboursementStatutRequete;
+import cm.billetterie.security.AuthPrincipal;
 import cm.billetterie.service.AgenceRemboursementService;
+import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Contrôleur AgenceRemboursement - propriétaire : Back A (Balla) - Sprint 2 - contrat : docs/API.md
- *
- * Routes à implémenter :
- * - GET /api/agence/remboursements
- * - PATCH /api/agence/remboursements/{id}
- */
 @RestController
 @RequestMapping("/api/agence/remboursements")
 public class AgenceRemboursementController {
@@ -20,5 +18,15 @@ public class AgenceRemboursementController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
+    @GetMapping
+    public List<RemboursementAgenceReponse> lister(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth) {
+        return service.lister(auth.agenceId());
+    }
+
+    @PatchMapping("/{id}")
+    public RemboursementAgenceReponse changerStatut(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth,
+                                                    @PathVariable Long id,
+                                                    @Valid @RequestBody RemboursementStatutRequete r) {
+        return service.changerStatut(auth.agenceId(), id, r.statut());
+    }
 }

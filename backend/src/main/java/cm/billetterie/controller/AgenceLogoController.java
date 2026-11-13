@@ -1,14 +1,12 @@
 package cm.billetterie.controller;
 
+import cm.billetterie.dto.LogoReponse;
+import cm.billetterie.security.AuthPrincipal;
 import cm.billetterie.service.AgenceLogoService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-/**
- * Contrôleur AgenceLogo - propriétaire : Back A (Balla) - Sprint 1 - contrat : docs/API.md
- *
- * Routes à implémenter :
- * - POST /api/agence/logo
- */
+/** Logo de sa propre agence (contrat : POST /api/agence/logo, champ « fichier »). */
 @RestController
 @RequestMapping("/api/agence/logo")
 public class AgenceLogoController {
@@ -19,5 +17,9 @@ public class AgenceLogoController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
+    @PostMapping
+    public LogoReponse envoyer(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth,
+                               @RequestParam("fichier") MultipartFile fichier) {
+        return service.televerser(auth.agenceId(), fichier);
+    }
 }

@@ -1,21 +1,14 @@
 package cm.billetterie.controller;
 
+import cm.billetterie.dto.ActivationRequete;
+import cm.billetterie.dto.AgenceAdminReponse;
+import cm.billetterie.dto.AgenceAdminRequete;
 import cm.billetterie.service.SuperAdminAgenceService;
+import jakarta.validation.Valid;
+import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Contrôleur SuperAdminAgence - propriétaire : Back A (Balla) - Sprint 1 - contrat : docs/API.md
- *
- * Routes à implémenter :
- * - GET /api/admin/agences
- * - POST /api/admin/agences
- * - PUT /api/admin/agences/{id}
- * - DELETE /api/admin/agences/{id}
- * - PATCH /api/admin/agences/{id}/activation
- * - POST /api/admin/agences/{id}/compte
- * - POST /api/admin/agences/{id}/logo
- * - POST /api/admin/comptes/{id}/reinitialisation-mot-de-passe
- */
 @RestController
 @RequestMapping("/api/admin/agences")
 public class SuperAdminAgenceController {
@@ -26,5 +19,30 @@ public class SuperAdminAgenceController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
+    @GetMapping
+    public List<AgenceAdminReponse> lister() {
+        return service.lister();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public AgenceAdminReponse creer(@Valid @RequestBody AgenceAdminRequete r) {
+        return service.creer(r);
+    }
+
+    @PutMapping("/{id}")
+    public AgenceAdminReponse modifier(@PathVariable Long id, @Valid @RequestBody AgenceAdminRequete r) {
+        return service.modifier(id, r);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void supprimer(@PathVariable Long id) {
+        service.supprimer(id);
+    }
+
+    @PatchMapping("/{id}/activation")
+    public AgenceAdminReponse activation(@PathVariable Long id, @Valid @RequestBody ActivationRequete r) {
+        return service.activer(id, r.actif());
+    }
 }

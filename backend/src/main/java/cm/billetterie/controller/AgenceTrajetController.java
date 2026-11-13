@@ -1,17 +1,14 @@
 package cm.billetterie.controller;
 
+import cm.billetterie.dto.TrajetReponse;
+import cm.billetterie.dto.TrajetRequete;
+import cm.billetterie.security.AuthPrincipal;
 import cm.billetterie.service.AgenceTrajetService;
+import jakarta.validation.Valid;
+import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Contrôleur AgenceTrajet - propriétaire : Back B (Patricia) - Sprint 1 - contrat : docs/API.md
- *
- * Routes à implémenter :
- * - GET /api/agence/trajets
- * - POST /api/agence/trajets
- * - PUT /api/agence/trajets/{id}
- * - DELETE /api/agence/trajets/{id}
- */
 @RestController
 @RequestMapping("/api/agence/trajets")
 public class AgenceTrajetController {
@@ -22,5 +19,27 @@ public class AgenceTrajetController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
+    @GetMapping
+    public List<TrajetReponse> lister(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth) {
+        return service.lister(auth.agenceId());
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public TrajetReponse creer(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth,
+                               @Valid @RequestBody TrajetRequete r) {
+        return service.creer(auth.agenceId(), r);
+    }
+
+    @PutMapping("/{id}")
+    public TrajetReponse modifier(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth,
+                                  @PathVariable Long id, @Valid @RequestBody TrajetRequete r) {
+        return service.modifier(auth.agenceId(), id, r);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void supprimer(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth, @PathVariable Long id) {
+        service.supprimer(auth.agenceId(), id);
+    }
 }

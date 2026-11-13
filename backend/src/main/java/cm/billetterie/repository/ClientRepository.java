@@ -1,11 +1,15 @@
 package cm.billetterie.repository;
 
-import cm.billetterie.entity.*;
-import java.util.Optional;
-import org.springframework.data.jpa.repository.*;
+import cm.billetterie.entity.Client;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
-    // TODO : requêtes spécifiques à Client
+
+    @Query("select c from Client c where lower(c.nom) like lower(concat('%', :q, '%')) "
+            + "or lower(c.prenom) like lower(concat('%', :q, '%')) "
+            + "or c.telephone like concat('%', :q, '%')")
+    List<Client> rechercher(@Param("q") String q);
 }

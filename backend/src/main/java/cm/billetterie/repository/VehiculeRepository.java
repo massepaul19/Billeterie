@@ -1,11 +1,14 @@
 package cm.billetterie.repository;
 
-import cm.billetterie.entity.*;
+import cm.billetterie.entity.Vehicule;
+import java.util.List;
 import java.util.Optional;
-import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VehiculeRepository extends JpaRepository<Vehicule, Long> {
-    // TODO : requêtes spécifiques à Vehicule
+    List<Vehicule> findByAgenceIdOrderByImmatriculation(Long agenceId);
+
+    Optional<Vehicule> findByIdAndAgenceId(Long id, Long agenceId);
+
+    Optional<Vehicule> findByAgenceIdAndImmatriculationIgnoreCase(Long agenceId, String immatriculation);
 }

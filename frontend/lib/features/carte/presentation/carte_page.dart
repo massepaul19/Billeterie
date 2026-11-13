@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
+import '../../../core/network/api_client.dart';
+import '../../../core/ui/crud.dart';
+import '../data/carte_api.dart';
 
-/// Carte des agences - propriétaire : Front D (Bouba) - Sprint 1
-/// À coder : Carte des agences actives, marqueurs cliquables (option).
-/// Voir TODO.md de ce dossier et docs/API.md.
+/// Agences actives. Version liste ; une vraie carte (flutter_map) pourra la remplacer plus tard
+/// grâce aux champs latitude / longitude déjà fournis par l'API.
 class CartePage extends StatelessWidget {
   const CartePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Carte des agences")),
-      body: const Center(
-        child: Padding(
-          padding: EdgeInsets.all(24),
-          child: Text("À coder : Carte des agences actives, marqueurs cliquables (option).", textAlign: TextAlign.center),
+    final api = CarteApi(ApiClient());
+    return EcranListe<Map<String, dynamic>>(
+      titre: 'Nos agences',
+      charger: api.agences,
+      vide: 'Aucune agence active.',
+      item: (c, a, rech) => Card(
+        child: ListTile(
+          leading: a['logo'] == null
+              ? const CircleAvatar(child: Icon(Icons.business))
+              : CircleAvatar(backgroundImage: NetworkImage(a['logo'] as String)),
+          title: Text('${a['nom']}'),
+          subtitle: Text('${a['ville'] ?? ''}${a['slogan'] == null ? '' : '\n${a['slogan']}'}'),
+          isThreeLine: a['slogan'] != null,
         ),
       ),
     );

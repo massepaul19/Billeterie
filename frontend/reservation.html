@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Réservation · Billetterie</title><link rel="stylesheet" href="/css/style.css">
+</head><body>
+<main>
+  <h1>Réservation</h1>
+  <div id="voyage" class="panneau"><div class="attente">Chargement…</div></div>
+
+  <form id="etapeContact" class="panneau champs" style="margin-top:14px;display:none" novalidate>
+    <h2 style="margin:0">Vos coordonnées</h2>
+    <div class="deux champs">
+      <div><label for="nom">Nom</label><input type="text" id="nom" required autocomplete="family-name"></div>
+      <div><label for="prenom">Prénom</label><input type="text" id="prenom" required autocomplete="given-name"></div>
+    </div>
+    <div class="deux champs">
+      <div><label for="tel">Téléphone</label><input type="tel" id="tel" required autocomplete="tel" placeholder="6XX XX XX XX"></div>
+      <div><label for="email">E-mail (le billet y sera envoyé)</label><input type="email" id="email" required autocomplete="email"></div>
+    </div>
+    <div id="erreurContact"></div>
+    <p style="color:var(--gris);margin:0">Votre place sera retenue 5 minutes pour finaliser le paiement.</p>
+    <button class="btn bloc" id="btnReserver" type="submit">Réserver et payer</button>
+  </form>
+
+  <form id="etapePaiement" class="panneau champs" style="margin-top:14px;display:none" novalidate>
+    <h2 style="margin:0">Paiement</h2>
+    <div class="ligne"><span>Place retenue</span><span class="chrono" id="chrono">--:--</span></div>
+    <div class="ligne"><span>Montant à payer</span><b id="montant"></b></div>
+    <div><label for="operateur">Opérateur</label>
+      <select id="operateur"><option value="MTN">MTN Mobile Money</option><option value="ORANGE">Orange Money</option></select></div>
+    <div><label for="telPaiement">Numéro Mobile Money</label><input type="tel" id="telPaiement" required placeholder="6XX XX XX XX"></div>
+    <div id="erreurPaiement"></div>
+    <button class="btn bloc" id="btnPayer" type="submit">Payer</button>
+    <a class="btn clair bloc" id="retour" href="/" style="display:none">Retour aux voyages</a>
+    <p style="color:var(--gris);margin:0;text-align:center;font-size:.85rem">Paiement simulé : aucun argent réel n'est débité.</p>
+  </form>
+</main>
+<script src="/js/api.js"></script>
+<script src="/js/reservation.js"></script>
+</body></html>

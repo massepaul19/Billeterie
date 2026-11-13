@@ -1,14 +1,10 @@
 package cm.billetterie.controller;
 
+import cm.billetterie.dto.AgenceCarteDto;
 import cm.billetterie.service.AgencePubliqueService;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Contrôleur AgencePublique - propriétaire : Back B (Patricia) - Sprint 1 - contrat : docs/API.md
- *
- * Routes à implémenter :
- * - GET /api/agences
- */
 @RestController
 @RequestMapping("/api/agences")
 public class AgencePubliqueController {
@@ -19,5 +15,8 @@ public class AgencePubliqueController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
+    @GetMapping
+    public List<AgenceCarteDto> lister() {
+        return service.lister();
+    }
 }

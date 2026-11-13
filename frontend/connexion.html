@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connexion · Billetterie</title><link rel="stylesheet" href="/css/style.css">
+</head><body>
+<main style="max-width:420px">
+  <h1>Connexion</h1>
+  <p style="color:var(--gris)">Réservé aux administrateurs d'agence et au super administrateur.</p>
+  <form id="f" class="panneau champs" novalidate>
+    <div><label for="tel">Téléphone</label><input type="tel" id="tel" required autocomplete="username"></div>
+    <div><label for="mdp">Mot de passe</label><input type="password" id="mdp" required autocomplete="current-password"></div>
+    <div id="err"></div>
+    <button class="btn bloc" id="ok" type="submit">Se connecter</button>
+  </form>
+</main>
+<script src="/js/api.js"></script>
+<script>
+enteteSite('espace');
+if (new URLSearchParams(location.search).get('expire')) $('#err').innerHTML = '<div class="msg ko">Votre session a expiré, reconnectez-vous.</div>';
+$('#f').addEventListener('submit', async e => {
+  e.preventDefault();
+  $('#ok').disabled = true; $('#err').innerHTML = '';
+  try {
+    const r = await Api.post('/api/auth/connexion', { telephone: $('#tel').value.trim(), motDePasse: $('#mdp').value });
+    Api.ouvrirSession(r);
+    location.href = r.role === 'SUPER_ADMIN' ? '/admin/' : '/agence/';
+  } catch (er) { $('#err').innerHTML = `<div class="msg ko">${esc(er.message)}</div>`; $('#ok').disabled = false; }
+});
+</script>
+</body></html>

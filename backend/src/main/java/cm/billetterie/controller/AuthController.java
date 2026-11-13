@@ -1,15 +1,14 @@
 package cm.billetterie.controller;
 
+import cm.billetterie.dto.ConnexionReponse;
+import cm.billetterie.dto.ConnexionRequete;
+import cm.billetterie.dto.MotDePasseRequete;
+import cm.billetterie.security.AuthPrincipal;
 import cm.billetterie.service.AuthService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Contrôleur Auth - propriétaire : Back A (Balla) - Sprint 1 - contrat : docs/API.md
- *
- * Routes à implémenter :
- * - POST /api/auth/connexion
- * - POST /api/auth/mot-de-passe
- */
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -20,5 +19,15 @@ public class AuthController {
         this.service = service;
     }
 
-    // TODO : coder les routes ci-dessus (DTO dans cm.billetterie.dto) et leurs tests
+    @PostMapping("/connexion")
+    public ConnexionReponse connexion(@Valid @RequestBody ConnexionRequete requete) {
+        return service.connexion(requete);
+    }
+
+    @PostMapping("/mot-de-passe")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void changerMotDePasse(@RequestAttribute(AuthPrincipal.ATTRIBUT) AuthPrincipal auth,
+                                  @Valid @RequestBody MotDePasseRequete requete) {
+        service.changerMotDePasse(auth, requete);
+    }
 }

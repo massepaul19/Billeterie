@@ -1,11 +1,16 @@
 import '../../../core/network/api_client.dart';
 
-/// Appels HTTP du module Paramètres de rappel (contrat : docs/API.md).
 class AgenceParametresApi {
   final ApiClient client;
   AgenceParametresApi(this.client);
 
-  // TODO : une méthode par route
-  // GET /api/agence/parametres/rappels
-  // PUT /api/agence/parametres/rappels
+  Future<List<int>> lireRappels() async {
+    final r = await client.dio.get('/api/agence/parametres/rappels');
+    return (r.data['delaisHeures'] as List).map((e) => (e as num).toInt()).toList();
+  }
+
+  Future<List<int>> modifierRappels(List<int> delais) async {
+    final r = await client.dio.put('/api/agence/parametres/rappels', data: {'delaisHeures': delais});
+    return (r.data['delaisHeures'] as List).map((e) => (e as num).toInt()).toList();
+  }
 }

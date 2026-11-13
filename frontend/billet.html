@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mon billet · Billetterie</title><link rel="stylesheet" href="/css/style.css">
+</head><body>
+<main>
+  <h1>Mon billet</h1>
+  <form id="saisie" class="panneau" style="display:flex;gap:10px;flex-wrap:wrap" onsubmit="return false">
+    <input type="text" id="code" placeholder="Code du billet" style="flex:1;min-width:200px;text-transform:uppercase" autocomplete="off">
+    <button class="btn" type="submit">Afficher</button>
+  </form>
+  <div id="recents" style="margin:10px 0"></div>
+  <div id="billet"></div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/billet.js"></script>
+</body></html>

@@ -1,11 +1,14 @@
 package cm.billetterie.repository;
 
-import cm.billetterie.entity.*;
+import cm.billetterie.entity.Trajet;
+import java.util.List;
 import java.util.Optional;
-import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TrajetRepository extends JpaRepository<Trajet, Long> {
-    // TODO : requêtes spécifiques à Trajet
+    List<Trajet> findByAgenceIdOrderById(Long agenceId);
+
+    Optional<Trajet> findByIdAndAgenceId(Long id, Long agenceId);
+
+    boolean existsByGareDepartIdOrGareArriveeId(Long gareDepartId, Long gareArriveeId);
 }

@@ -20,3 +20,8 @@ frontend/pubspec.lock
 # Sauvegardes du script d'initialisation
 *.bak-*
 backend/uploads/
+*.zip
+*.bak
+*.bak2
+*.bak-*
+backend/secrets.properties
